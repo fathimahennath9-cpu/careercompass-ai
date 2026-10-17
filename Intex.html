@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerCompass AI</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+    color: #202044;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+header {
+    text-align: center;
+    padding: 25px 10px;
+}
+
+.logo {
+    font-size: 42px;
+}
+
+h1 {
+    color: #5145cd;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    line-height: 1.6;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px #25255a12;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+select, button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+select {
+    border: 1px solid #ddd;
+    background: white;
+}
+
+button {
+    background: #5145cd;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #3930a8;
+}
+
+h2 {
+    color: #5145cd;
+}
+
+.roadmap {
+    background: #f4f3ff;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 10px;
+}
+
+.roadmap strong {
+    color: #5145cd;
+}
+
+.resource {
+    display: inline-block;
+    margin-top: 10px;
+    color: #5145cd;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="logo">🧭</div>
+    <h1>CareerCompass AI</h1>
+    <p class="subtitle">
+        Discover your interests.<br>
+        Explore careers. Build your future.
+    </p>
+</header>
+
+<div class="card">
+
+    <h2>Find Your Career ✨</h2>
+
+    <p>Choose a career field you want to explore.</p>
+
+    <label for="career">Your Interest</label>
+
+    <select id="career">
+        <option value="ai">Artificial Intelligence</option>
+        <option value="data">Data Analysis</option>
+        <option value="web">Web Development</option>
+        <option value="robotics">Robotics</option>
+    </select>
+
+    <button onclick="showRoadmap()">
+        Explore My Roadmap →
+    </button>
+
+</div>
+
+<div class="card" id="result" style="display:none;">
+</div>
+
+<footer>
+    CareerCompass AI | Learn Today, Grow Tomorrow 💜
+</footer>
+
+</div>
+
+<script>
+function showRoadmap() {
+
+    const career = document.getElementById("career").value;
+
+    const careers = {
+
+        ai: {
+            title: "AI / Machine Learning 🤖",
+            description: "Learn how intelligent computer systems work.",
+            skills: [
+                "Python Programming",
+                "Mathematics and Statistics",
+                "Data Analysis",
+                "Machine Learning",
+                "AI Projects"
+            ],
+            resource: "https://www.w3schools.com/python/"
+        },
+
+        data: {
+            title: "Data Analyst 📊",
+            description: "Discover useful information from data.",
+            skills: [
+                "Excel Basics",
+                "SQL",
+                "Python",
+                "Data Visualisation",
+                "Portfolio Projects"
+            ],
+            resource: "https://www.w3schools.com/sql/"
+        },
+
+        web: {
+            title: "Web Developer 🌐",
+            description: "Learn to build websites and web applications.",
+            skills: [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "Responsive Web Design",
+                "Build Website Projects"
+            ],
+            resource: "https://www.w3schools.com/"
+        },
+
+        robotics: {
+            title: "Robotics & Automation ⚙️",
+            description: "Explore robots, programming and automation.",
+            skills: [
+                "Python Basics",
+                "Mathematics",
+                "Basic Electronics",
+                "Sensors and Automation",
+                "Robotics Projects"
+            ],
+            resource: "https://www.w3schools.com/python/"
+        }
+
+    };
+
+    const selected = careers[career];
+
+    let html = `
+        <h2>${selected.title}</h2>
+        <p>${selected.description}</p>
+        <h3>Your Learning Roadmap 🗺️</h3>
+    `;
+
+    selected.skills.forEach((skill, index) => {
+        html += `
+            <div class="roadmap">
+                <strong>Step ${index + 1}</strong><br>
+                ${skill}
+            </div>
+        `;
+    });
+
+    html += `
+        <a class="resource"
+           href="${selected.resource}"
+           target="_blank"
+           rel="noopener">
+           📚 Start Learning for Free →
+        </a>
+    `;
+
+    const result = document.getElementById("result");
+
+    result.innerHTML = html;
+    result.style.display = "block";
+
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+</script>
+
+</body>
+</html>
